@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.nuwarobotics.example"
+        minSdkVersion 28
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    packagingOptions{
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    /*
+    這邊全部丟掉
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "com.android.support:support-v4:28.0.0"
+    implementation "com.android.support:support-v13:28.0.0"
+    implementation 'com.android.support:design:28.0.0'*/
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    //camera
+    def camerax_version = "1.0.2"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:1.0.0-alpha30"
+
+
+    //TODO : Please download newest NuwaSDK from Nuwa Developer Website https://dss.nuwarobotics.com/documents/sdkDescription/robotSdk
+    //Step 1 : Copy aar to project lib folder : NuwaSDKExample\app\libs
+    //Step 2 : Replace below NuwaSDK file name
+    implementation(name: 'NuwaSDK-2021-07-08_1058_2.1.0.08_e21fe7', ext: 'aar')
+
+    //TODO : Please download newest NuwaSDK from Nuwa Developer Website https://dss.nuwarobotics.com/
+    //Step 1 : Copy aar to project lib folder : NuwaSDKExample\app\libs
+    //Step 2 : Replace below NuwaBleInterface file name
+    implementation(name: 'NuwaBLEInterface_2020-11-27_v1.0_62415eb_release', ext: 'aar')
+}

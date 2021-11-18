@@ -1,0 +1,40 @@
+事項
+    1.改成使用CameraX來換掉目前的拍照，才能做出Streaming
+    2.Server端改寫成解碼JPG然後在程式中顯示(OpenCV...)
+    3.Socket傳輸改用UDP協議，比較適合Streamnig.
+
+CameraX
+    1. Open new project, choose API 28(Android 9.0) and java.
+
+    2. Add permission to manifest file
+
+        <uses-permission android:name="android.permission.CAMERA"/>
+        <uses-feature android:name="android.hardware.camera.any"/>
+
+    3. Add gradle dependencies to bulid.gradle of app
+
+        def camerax_version = "1.0.1"
+        implementation "androidx.camera:camera-camera2:$camerax_version"
+        implementation "androidx.camera:camera-lifecycle:$camerax_version"
+        implementation "androidx.camera:camera-view:1.0.0-alpha27"
+
+    4. Make sure the compile options in the build.gradle of app
+
+        compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+    5. Sync your project
+
+    6. Permission check
+
+    7. Some related functions.
+
+    8. Create new Class, "CameraActivity"
+
+    9. Create new layout for streaming
+
+Reference
+    1.https://blog.csdn.net/weixin_26737625/article/details/108259504
+    2.https://developer.android.com/codelabs/camerax-getting-started#1
